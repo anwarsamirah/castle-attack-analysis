@@ -5,8 +5,8 @@ import pandas as pd
 
 data = dict()
 tuples = 0
-records = 164102   #default should be total sample size
 
+records = 10000   #default should be total sample size = 164102
 attack_value = 10
 
 filename = input("Enter filename inside anonymized_data folder: ")
@@ -28,5 +28,11 @@ with open ("anonymized_data/"+filename) as csvfile:
             break
         
 for key in data:
+    total_count = len(data[key])
+    maxUsage = max(data[key])
+    minUsage = min(data[key])
+    avgUsage = round(sum(data[key]) / len(data[key]), 2)
+    below_attack_value_count = len(list(filter(lambda x: x < attack_value, data[key])))
+    percentage_attack_value = round((below_attack_value_count / total_count) * 100, 2)
 
-    print(f"{key} >>> total_count : {len(data[key])},   maxUsage : {max(data[key])},    minUsage : {min(data[key])},    avgUsage : {round(sum(data[key])/len(data[key]),2)},     below_attack_value_count : {len(list(filter(lambda x: x <attack_value, data[key])))}")
+    print(f"{key} >>> total_count : {total_count},   maxUsage : {maxUsage},    minUsage : {minUsage},    avgUsage : {avgUsage},     below_attack_value_count : {below_attack_value_count},    percentage_attack_value : {percentage_attack_value}%")

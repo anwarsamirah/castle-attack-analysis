@@ -4,11 +4,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 data = list()
-partial_record = True
-number_of_records = 5000
 tuples = 0
 
-with open ("data.csv") as csvfile:
+records = 10000   #default should be total sample size = 164102
+
+filename = input("Enter filename inside anonymized_data folder: ")
+
+with open ("anonymized_data/"+filename) as csvfile:
     reader = csv.DictReader(csvfile)
 
     for row in reader:
@@ -18,10 +20,9 @@ with open ("data.csv") as csvfile:
         individual_info = [cluster, consumption]
         data.append(individual_info)
 
-        if partial_record is not False:
-            tuples = tuples+1
-            if tuples == number_of_records:
-                break
+        tuples = tuples+1
+        if tuples==records:
+            break
 
 
 df = pd.DataFrame(data, columns=['Cluster', 'Consumption'])
