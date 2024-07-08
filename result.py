@@ -7,8 +7,8 @@ data = dict()
 attack_value_list = list()
 tuples = 0
 
-records = 10000   #default should be total sample size = 164102
-attack_value = 30
+records = 164102   #default should be total sample size = 164102
+attack_value = 7
 
 filename = input("Enter filename inside anonymized_data folder: ")
 
@@ -44,8 +44,8 @@ for key in data:
 
 df = pd.DataFrame(attack_value_list, columns=['Cluster_label', 'Percentage'])
 #print(df.head())
-sns.distplot(x= "Cluster_label", y = "Percentage", data = df)
-plt.title("Enter your desired title name")
+sns.barplot(x= "Cluster_label", y = "Percentage", data = df)
+plt.title("Plot for percentage of attack value = 7")
 plt.xlabel("Cluster")
 plt.ylabel("Percentage of attack value")
 plt.show()
