@@ -44,8 +44,31 @@ for key in data:
 
 df = pd.DataFrame(attack_value_list, columns=['Cluster_label', 'Percentage'])
 #print(df.head())
-sns.barplot(x= "Cluster_label", y = "Percentage", data = df)
-plt.title("Plot for percentage of attack value = 7")
-plt.xlabel("Cluster")
-plt.ylabel("Percentage of attack value")
+
+
+#sns.barplot(x= "Cluster_label", y = "Percentage", data = df)
+
+
+
+
+#sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=.8)
+
+
+
+# sns.displot(
+#     data=df,
+#     x='Cluster_label',
+#     weights='Percentage',
+#     hue='Cluster_label',
+#     kde=True,
+#     height=4,
+#     aspect=2
+# )
+
+
+sns.kdeplot(df['Percentage'])
+
+# plt.title("Plot for percentage of attack value = 7")
+# plt.xlabel("Cluster")
+# plt.ylabel("Percentage")
 plt.show()
