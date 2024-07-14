@@ -43,6 +43,7 @@ for key in data:
 #print(attack_value_list)
 
 df = pd.DataFrame(attack_value_list, columns=['Cluster_label', 'Percentage'])
+
 #print(df.head())
 
 
@@ -51,7 +52,8 @@ df = pd.DataFrame(attack_value_list, columns=['Cluster_label', 'Percentage'])
 
 
 
-#sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=.8)
+sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=.8)
+
 
 
 
@@ -66,9 +68,9 @@ df = pd.DataFrame(attack_value_list, columns=['Cluster_label', 'Percentage'])
 # )
 
 
-sns.kdeplot(df['Percentage'])
+#sns.kdeplot(df['Percentage'])
 
-# plt.title("Plot for percentage of attack value = 7")
-# plt.xlabel("Cluster")
-# plt.ylabel("Percentage")
+plt.title("Plot for percentage of attack value = 7")
+plt.xlabel("Cluster")
+plt.ylabel("Percentage")
 plt.show()
