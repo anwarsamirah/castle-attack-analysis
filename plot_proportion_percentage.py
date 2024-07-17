@@ -21,13 +21,13 @@ with open ("anonymized_data/"+filename) as csvfile:
 
         if cluster_id not in data:
             data[cluster_id] = [consumption]
-        else:    
+        else:
             data[cluster_id].append(consumption)
 
         tuples = tuples+1
         if tuples == records:
             break
-        
+
 for key in data:
     total_count = len(data[key])
     maxUsage = max(data[key])
@@ -48,31 +48,12 @@ df = df.sort_values('Percentage')
 # print(df.head())
 # print(df.tail())
 
-# #sns.barplot(x= "Cluster_label", y = "Percentage", data = df)
-#
-#
-#
-sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=.8)
 
+sns.ecdfplot(data=df, x="Percentage")
+#sns.ecdfplot(data=df, x="Percentage", stat="count")
 
-
-
-
-
-# sns.displot(
-#     data=df,
-#     x='Cluster_label',
-#     weights='Percentage',
-#     hue='Cluster_label',
-#     kde=True,
-#     height=4,
-#     aspect=2
-# )
-
-
-#sns.kdeplot(df['Percentage'])
 
 plt.title("Plot for percentage of attack value = 7")
-plt.xlabel("Cluster")
-plt.ylabel("Percentage")
+plt.xlabel("Percentage")
+plt.ylabel("Proportion")
 plt.show()
