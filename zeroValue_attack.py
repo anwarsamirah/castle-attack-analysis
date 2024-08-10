@@ -2,13 +2,14 @@ import csv
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
+import statistics
 
 data = dict()
 attack_value_list = list()
 tuples = 0
 
 records = 164102   #default should be total sample size = 164102
-attack_value = 7
+attack_value = 3000
 
 filename = input("Enter filename inside anonymized_data folder: ")
 
@@ -33,12 +34,13 @@ for key in data:
     maxUsage = max(data[key])
     minUsage = min(data[key])
     avgUsage = round(sum(data[key]) / len(data[key]), 2)
+    stanDev = statistics.stdev(data[key])
     below_attack_value_count = len(list(filter(lambda x: x < attack_value, data[key])))
     percentage_attack_value = round((below_attack_value_count / total_count) * 100, 2)
 
     attack_value_list.append([key, percentage_attack_value])
 
-    #print(f"{key} >>> total_count : {total_count},   maxUsage : {maxUsage},    minUsage : {minUsage},    avgUsage : {avgUsage},     below_attack_value_count : {below_attack_value_count},    percentage_attack_value : {percentage_attack_value}%")
+    print(f"{key} >>> total_count : {total_count},   maxUsage : {maxUsage},    minUsage : {minUsage},    avgUsage : {avgUsage},     below_attack_value_count : {below_attack_value_count}, standard_deviation : {stanDev},    percentage_attack_value : {percentage_attack_value}%")
 
 #print(attack_value_list)
 
@@ -53,6 +55,8 @@ df = df.sort_values('Percentage')
 #
 #
 sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=.8)
+
+
 
 
 
