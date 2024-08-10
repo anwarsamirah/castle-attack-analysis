@@ -8,8 +8,8 @@ attack_value_list = list()
 tuples = 0
 
 records = 164102  # default should be total sample size = 164102
-min_attack_value = 10
-max_attack_value = 18
+min_attack_value = 4100
+max_attack_value = 6800
 
 filename = input("Enter filename inside anonymized_data folder: ")
 
@@ -39,7 +39,7 @@ for key in data:
 
     attack_value_list.append([key, percentage_attack_value])
 
-    # print(f"{key} >>> total_count : {total_count},   maxUsage : {maxUsage},    minUsage : {minUsage},    avgUsage : {avgUsage},     below_attack_value_count : {below_attack_value_count},    percentage_attack_value : {percentage_attack_value}%")
+    print(f"{key} >>> total_count : {total_count},   maxUsage : {maxUsage},    minUsage : {minUsage},    avgUsage : {avgUsage},     below_attack_value_count : {below_attack_value_count},    percentage_attack_value : {percentage_attack_value}%")
 
 # print(attack_value_list)
 
@@ -51,14 +51,14 @@ df = df.sort_values('Percentage')
 
 
 
-sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=0.6)
+#sns.displot(data=df, x='Cluster_label', weights='Percentage', discrete=True, shrink=0.6)
 
 
 
 # sns.kdeplot(df['Percentage'])
 
 
-plt.title("Percentage Plot for three or more person household")
-plt.xlabel("Cluster Label")
-plt.ylabel("Percentage")
-plt.show()
+# plt.title("Percentage Plot for three or more person household")
+# plt.xlabel("Cluster Label")
+# plt.ylabel("Percentage")
+# plt.show()
